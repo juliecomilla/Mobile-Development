@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet} from 'react-native';
-import * as data from './db.json'
-import Button from './src/components/Button'
+import { View, Text, Image, ScrollView, StyleSheet, Button, Linking} from 'react-native';
+import * as data from '../../db.json'
 
 
 
 const RestList = () => {
   const [restaurants, setRestaurants] = useState([]);
- 
+  const openUrl = (Website) => {
+    Linking.openURL(Website);
+
+  }
 
   useEffect(() => {
     setRestaurants(data['Restaurants'])
@@ -17,6 +19,7 @@ const RestList = () => {
   }, []);
 
   return (
+
     <View>
         <ScrollView>
           {restaurants.map(restaurant => (
@@ -26,10 +29,8 @@ const RestList = () => {
               <Text style={styles.about}>{restaurant.About}</Text>
               <Image source={{ uri: restaurant.Image }} style={styles.image} />
               <Text style={styles.address}>{restaurant.Address}</Text>
-              <Button buttonPress={() => {
-                openWebsite(restaurant.Website.url);
-              }}
-            />
+              <Button title= "Reservations here"
+              onPress= {() => openUrl(restaurant.Website.url)}/>
             </View>
           ))}
         </ScrollView>
@@ -75,6 +76,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888',
   },
+
+  button: {
+    fontSize: 16,
+    color: '#000',
+
+}
+
 
 });
 
