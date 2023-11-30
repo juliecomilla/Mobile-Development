@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet} from 'react-native';
 import * as data from '../../db.json'
-
+import Button from './Button'
 
 
 const RestList = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setRestaurants(data['Restaurants'])
-    setLoading(false)
+ 
 
 
   }, []);
 
   return (
     <View>
-      {loading ? (
-        <Text>Loading...</Text>
-      ) : (
         <ScrollView>
           {restaurants.map(restaurant => (
             <View key={restaurant.Id} style={styles.restaurantContainer}>
@@ -28,10 +24,14 @@ const RestList = () => {
               <Text style={styles.about}>{restaurant.About}</Text>
               <Image source={{ uri: restaurant.Image }} style={styles.image} />
               <Text style={styles.address}>{restaurant.Address}</Text>
+              <Button buttonPress={() => {
+                openWebsite(restaurant.Website.url);
+              }}
+            />
             </View>
           ))}
         </ScrollView>
-      )}
+    
     </View>
   );
 };

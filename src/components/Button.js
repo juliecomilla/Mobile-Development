@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
-const Button = () => {
+const Button = (props) => {
+    const { buttonStyle, textStyle} = styles;
 
 
     return ( 
-    <TouchableOpacity  style={buttonStyle}>
+    <TouchableOpacity onPress={props.buttonPress}  style={buttonStyle}>
         <Text style={textStyle}>Reservations Here</Text>
     </TouchableOpacity>
 
