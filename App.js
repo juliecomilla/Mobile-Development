@@ -1,7 +1,7 @@
 import { AppRegistry, View } from 'react-native';
 import React from "react";
 import Header from './src/components/Header';
-import RestList from './src/components/RestList';
+import RestList from './RestList';
 
 
 
